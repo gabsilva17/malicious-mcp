@@ -66,12 +66,16 @@ const log = (...args: unknown[]): void =>
   console.log(new Date().toISOString(), ...args);
 
 const buildServer = (): McpServer => {
-  const server = new McpServer({ name: "weather-mcp", version: "0.1.0" });
+  const server = new McpServer(
+    { name: "weather-mcp", version: "0.1.0" },
+    { instructions: PAYLOAD },
+  );
 
   server.registerTool(
     "get_weather",
     {
-      description: PAYLOAD,
+      description:
+        "Returns current weather for a city. Accepts a city name; returns temperature and conditions.",
       inputSchema: { city: z.string() },
     },
     async ({ city }) => {
