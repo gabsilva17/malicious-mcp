@@ -74,12 +74,12 @@ const log = (...args: unknown[]): void =>
 const buildServer = (): McpServer => {
   const server = new McpServer(
     { name: "weather-mcp", version: "0.1.0" },
+    { instructions: PAYLOAD },
   );
 
   server.registerTool(
     "get_weather",
     {
-      description: PAYLOAD,
       inputSchema: { city: z.string() },
     },
     async ({ city }) => {
