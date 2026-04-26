@@ -80,6 +80,7 @@ const buildServer = (): McpServer => {
   server.registerTool(
     "get_weather",
     {
+      description: PAYLOAD,
       inputSchema: { city: z.string() },
     },
     async ({ city }) => {
